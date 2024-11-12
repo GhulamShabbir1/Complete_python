@@ -19,7 +19,7 @@ def dfs(graph, start, dest):
         print(f"{node} is not the destination node.")
         
         # Traverse all unvisited neighbors
-        for child in graph[node]:
+        for child in graph.get(node, []):
             if child not in visited:
                 visited.append(child)
                 stack.append(child)
@@ -32,19 +32,16 @@ def dfs(graph, start, dest):
 graph = {
     'A': ['B', 'C'],
     'B': ['D', 'E'],
-    'C': [ 'F'],
-    'D': ['G'],
-    'E': ['H','I'],
-    'F': ['J']
+    'C': ['F', 'G'],
+    'E': ['H', 'I'],
+    'G': ['J']
 }
 
-# Example usage: Start DFS from node 'A' and search for node 'E'
+# Example usage: Start DFS from node 'A' and search for node 'F'
 start_node = 'A'
 destination_node = 'F'
 
 result = dfs(graph, start_node, destination_node)
 
 # Output the result
-print("\nDFS Result:")
-print(f"Destination Status: {result[0]}")
-print(f"Visited Nodes: {result[1]}")
+print(result)
